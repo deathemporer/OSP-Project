@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'functions/functions.php';
 require 'functions/logout.php';
 session_start();
@@ -31,7 +31,7 @@ $conn = connect();
             z-index: 1;
             height: 30px;
             width: 100%;
-            background-color: #FAFAFA;  
+            background-color: #FAFAFA;
             position: fixed;
             text-align: right;
             padding-top: 10px;
@@ -94,18 +94,19 @@ $conn = connect();
         $username = $_POST['username'];
         $dp = $_POST['dp'];
         $uid = $_SESSION['user_id'];
-        if(isset($_POST["username"]) && isset($_POST["dp"])){
-          $sql = "UPDATE \`users\` set \`user_username\`=\'".$username.", \`user_dp\`='".$dp."\' where user_id=".$uid.";";
-        }
-        if(isset($_POST["username"])){
-          $sql = "UPDATE \`users\` set \`user_username\`=\'".$username."\' where user_id=".$uid.";";
-        }
-        if(isset($_POST["dp"])){
-          $sql = "UPDATE \`users\` set \`user_dp\`=\'".$dp."\' where user_id=".$uid.";";
-        }
+          if($username!="")
+          $sql = 'UPDATE users set user_username="'.$username.'"where user_id="'.$uid.'";';
+
+          if($dp!="")
+          $sql = 'UPDATE users set user_dp="'.$dp.'"where user_id="'.$uid.'";';
+
+
         $query = mysqli_query($conn, $sql);
         if($query){
           echo "<script>alert(\'Changes made to profile\');</script>";
+
         }
+        else
+        echo mysqli_error($conn);
 	}
 ?>
