@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'functions/functions.php';
 session_start();
 if (isset($_SESSION['user_id'])) {
@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id'])) {
 }
 session_destroy();
 session_start();
-ob_start(); 
+ob_start();
 ?>
 
 <!doctype html>
@@ -66,7 +66,7 @@ ob_start();
 <form class="myForm" method=post>
     <input type="text" name="useremail" id="useremail" placeholder="Enter your E-mail" value="<?php if(isset($_COOKIE["useremail"])){ echo $_COOKIE["useremail"];} ?>" required>
     <input type="password" name="userpass" id="userpass" placeholder="Enter your Password" value="<?php if(isset($_COOKIE["userpass"])){ echo $_COOKIE["userpass"];} ?>" required>
-    <input type="submit" id="submit">
+    <input type="submit" id="submit" value="Login">
 </form>
 <p>New User? <a href="register.php"> Register</a>
 <p class="required" style="margin: auto;"></p><br>

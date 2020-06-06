@@ -80,7 +80,7 @@ $conn = connect();
     </form>
     </div>
   <div id="footer">
-  <form method=post  action=logout.php>
+  <form method="POST"  action=logout.php>
         <input type="submit" name="Logout" value="Logout"></input>
 	</form>
     </div>

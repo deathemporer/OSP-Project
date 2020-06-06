@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'functions/functions.php';
 require 'functions/logout.php';
 session_start();
@@ -12,7 +12,7 @@ $conn = connect();
 ?>
 
 <?php
-if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
+if(isset($_GET['id']) && ($_GET['id'] != $_SESSION['user_id'])) {
     $current_id = $_GET['id'];
     $flag = 1;
 } else {
@@ -34,7 +34,7 @@ if(isset($_GET['id']) && $_GET['id'] != $_SESSION['user_id']) {
             z-index: 1;
             height: 30px;
             width: 100%;
-            background-color: #FAFAFA;  
+            background-color: #FAFAFA;
             position: fixed;
             text-align: right;
             padding-top: 10px;
@@ -67,11 +67,10 @@ body {
   margin-bottom: 0px;
 }
 
-h3{
-  margin-bottom: 0%;
-  font-weight: normal;
-  letter-spacing: 0.5px;
-  word-spacing: 3.5px;
+h1{
+  text-align: center;
+  color:dimgrey;
+  font-size:50px;
 }
 
 #follow{
@@ -104,7 +103,7 @@ h3{
   margin: 0px;
 }
 
-/* 
+/*
 #header{
   border-bottom: 2px solid #cccccc;
 } */
@@ -144,30 +143,29 @@ h3{
           $sql2 = "SELECT * from users where user_id=\"".$_SESSION['user_id']."\";";
           $conn = connect();
           $query2 = mysqli_query($conn, $sql2);
-          
+
           $row2 = mysqli_fetch_assoc($query2);
-          
+
           echo "<div id=\"header\"><br><br>";
           echo "<div id=\"dpdiv\">";
             echo "<img id=\"dp\" src=\"".$row2['user_dp']."\" alt=\'Profile Picture\'>";
             echo '</div>';
-            echo '<div id=\"desc\">';
+            echo '<div id="desc">';
               echo "<p>".$row2['user_username']."</p>";
-              echo "<h3>".$row2['user_firstname']." ".$row2['user_lastname']."</h3>";
+              echo "<h1>".$row2['user_firstname']." ".$row2['user_lastname']."</h1>";
             echo '</div>';
           echo '</div>';
           echo '<br>';
           echo "<a href=\"edit.php\"><button>Edit Profile</button></a>";
           echo '<hr style=\'color: #cccccc;\'>';
           echo '<div id=\'timeline\'>';
-          echo '<p id=\'notfound\' style=\"text-align:center;\"></p>';
           $sql = "SELECT * from posts where post_by=\"".$_SESSION['user_id']."\";";
           $query = mysqli_query($conn, $sql);
           if(mysqli_num_rows($query) == 0){
             ?> <script>
             document.getElementById("notfound").innerHTML="No posts.";
             </script> <?php
-          } 
+          }
           else{
             while($row = mysqli_fetch_assoc($query)){
               echo '<div class=\'post\'>';
@@ -181,16 +179,16 @@ h3{
           $sql2 = "SELECT * from users where user_id=\"".$current_id."\";";
           $conn = connect();
           $query2 = mysqli_query($conn, $sql2);
-          
+
           $row2 = mysqli_fetch_assoc($query2);
-          
+
           echo "<div id=\"header\"><br><br>";
           echo "<div id=\"dpdiv\">";
             echo "<img id=\"dp\" src=\"".$row2['user_dp']."\" alt=\'Profile Picture\'>";
             echo '</div>';
-            echo '<div id=\"desc\">';
+            echo '<div id="desc">';
               echo "<p>".$row2['user_username']."</p>";
-              echo "<h3>".$row2['user_firstname']." ".$row2['user_lastname']."</h3>";
+              echo "<h1>".$row2['user_firstname']." ".$row2['user_lastname']."</h1>";
             echo '</div>';
           echo '</div>';
           echo '<br>';
@@ -203,7 +201,7 @@ h3{
             ?> <script>
             document.getElementById("notfound").innerHTML="No posts.";
             </script> <?php
-          } 
+          }
           else{
             while($row = mysqli_fetch_assoc($query)){
               echo '<div class=\'post\'>';
@@ -215,21 +213,12 @@ h3{
         }
         ?>
 
- 
+
   <div id="footer">
-  <form method=post>
+  <form method="POST" action="logout.php">
         <input type="submit" name="Logout" value="Logout"></input>
 	</form>
     </div>
 </body>
 
 </html>
-
-<?php
-	$conn = connect();
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    setcookie("useremail", "", time()-3600);
-    setcookie("userpass", "", time()-3600);
-		logout();
-	}
-?>
