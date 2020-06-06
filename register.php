@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'functions/functions.php';
 session_start();
 if (isset($_SESSION['user_id'])) {
@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id'])) {
 }
 session_destroy();
 session_start();
-ob_start(); 
+ob_start();
 ?>
 
 <!doctype html>
@@ -72,7 +72,7 @@ ob_start();
     <input type="text" name="useremail" id="useremail" placeholder="Enter E-mail" required>
     <input type="password" name="pass" id="pass" placeholder="Enter Password" required>
     <input type="password" name="cpass" id="cpass" placeholder="Confirm Password" required>
-    <input type="submit" id="submit">
+    <input type="submit" id="submit" value="Register">
 </form>
 
 <?php

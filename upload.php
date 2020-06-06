@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'functions/functions.php';
 require 'functions/logout.php';
 session_start();
@@ -10,7 +10,7 @@ $temp = $_SESSION['user_id'];
 session_destroy();
 session_start();
 $_SESSION['user_id'] = $temp;
-ob_start(); 
+ob_start();
 // Establish Database Connection
 $conn = connect();
 ?>
@@ -60,7 +60,7 @@ $conn = connect();
             font-family: montserrat;
         }
         #topbar{
-            background-color: #FAFAFA;  
+            background-color: #FAFAFA;
             border-bottom: 0.5px solid #ccc;
             position: fixed;
             width: 100%;
@@ -83,7 +83,7 @@ $conn = connect();
         #topbar img{
             width: 50px;
             height: 50px;
-        }	
+        }
 
         #post{
             font-family: montserrat;
@@ -95,7 +95,7 @@ $conn = connect();
             z-index: 1;
             height: 30px;
             width: 100%;
-            background-color: #FAFAFA;  
+            background-color: #FAFAFA;
             position: fixed;
             text-align: right;
             padding-top: 10px;
@@ -135,7 +135,7 @@ $conn = connect();
         </form>
     </div>
     <div id="footer">
-    <form method=post>
+    <form method="POST" action="logout.php">
         <input type="submit" name="Logout" value="Logout"></input>
 	</form>
     </div>
@@ -158,9 +158,3 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') { // Form is Posted
 }
 ?>
 
-<?php
-	$conn = connect();
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		logout();
-	}
-?>

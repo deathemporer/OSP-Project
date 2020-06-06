@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'functions/functions.php';
 require 'functions/logout.php';
 session_start();
@@ -19,7 +19,7 @@ $conn = connect();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Notifications</title>
-    
+
     <style>
     #footer{
             left: 0;
@@ -27,7 +27,7 @@ $conn = connect();
             z-index: 1;
             height: 30px;
             width: 100%;
-            background-color: #FAFAFA;  
+            background-color: #FAFAFA;
             position: fixed;
             text-align: right;
             padding-top: 10px;
@@ -62,7 +62,7 @@ $conn = connect();
             }
 
             #topbar{
-            background-color: #FAFAFA;  
+            background-color: #FAFAFA;
             border-bottom: 0.5px solid #ccc;
             position: fixed;
             width: 100%;
@@ -93,7 +93,7 @@ $conn = connect();
             }
             #div1{
                 display: inline-block;
-                width: 50%;    
+                width: 50%;
                 text-align: center;
             }
 
@@ -127,13 +127,14 @@ $conn = connect();
                     ?> <script>
                     document.getElementById("notfound").innerHTML="No posts.";
                     </script> <?php
-                } 
+                }
                 else{
                     while($row = mysqli_fetch_assoc($query)){
-                        $sql2 = "SELECT user_username from users where user_id=\"".$row['post_by']."\"";
+                        $sql2 = "SELECT user_username, user_id from users where user_id=\"".$row['post_by']."\"";
                         $query3 = mysqli_query($conn, $sql2);
                         $row3 = mysqli_fetch_assoc($query3);
-                        echo "<p>"."<a class=\"profilelink\" href=\"profile.php?id=" . $row3['user_username'] ."\">".$row3['user_username']."</a>"." posted a picture. ".$row['post_time']."</p>";
+                        echo '<p><a class="profilelink" href="profile.php?id='. $row["post_by"] .'">'.$row3['user_username'].'</a>posted a picture. '.$row['post_time'].'</p>';
+                        ;
                     }
                 }
                 ?>
@@ -151,7 +152,7 @@ $conn = connect();
                     ?> <script>
                     document.getElementById("notfound").innerHTML="No posts.";
                     </script> <?php
-                } 
+                }
                 else{
                     while($row = mysqli_fetch_assoc($query)){
                         $sql2 = "SELECT user_username from users where user_id=\"".$row['comment_by']."\"";
@@ -172,19 +173,10 @@ $conn = connect();
         </div>
     </div>
     <div id="footer">
-    <form method=post>
+    <form method="POST" action="logout.php">
         <input type="submit" name="Logout" value="Logout"></input>
 	</form>
     </div>
 </body>
 
 </html>
-
-<?php
-	$conn = connect();
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        setcookie("useremail", "", time()-3600);
-    setcookie("userpass", "", time()-3600);
-		logout();
-	}
-?>
