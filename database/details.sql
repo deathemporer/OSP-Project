@@ -1,14 +1,13 @@
 CREATE DATABASE vitgram;
 
 CREATE TABLE users (
-user_id             INT NOT NULL AUTO_INCREMENT,
-user_dp             TEXT DEFAULT 'https://i2.wp.com/molddrsusa.com/wp-content/uploads/2015/11/profile-empty.png.250x250_q85_crop.jpg?ssl=1',
-user_firstname      VARCHAR(20) NOT NULL,  
-user_lastname       VARCHAR(20) NOT NULL,
-user_username       VARCHAR(20),
-user_email          VARCHAR(30),
-user_password       VARCHAR(255) NOT NULL,
-PRIMARY KEY (user_id)
+id             INT NOT NULL AUTO_INCREMENT,
+firstname      VARCHAR(20) NOT NULL,  
+lastname       VARCHAR(20) NOT NULL,
+username       VARCHAR(20),
+email          VARCHAR(30),
+password       VARCHAR(255) NOT NULL,
+PRIMARY KEY (id)
 );
 
 CREATE TABLE follow (
